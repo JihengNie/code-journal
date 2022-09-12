@@ -5,6 +5,7 @@ img {
 
 html {
   background-color: #f0f0f0;
+  font-family: sans-serif;
 }
 
 .remove-padding {
@@ -17,6 +18,7 @@ html {
   width: 100%;
   padding: 1rem 0;
   font-size: 1.75rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .save-button {
@@ -45,7 +47,7 @@ html {
   background-color: rgb(128 52 205);
 }
 
-.text-padding-adjust:focus {
+.text-adjust:focus {
   outline: none;
   border: solid #562b81;
 }
