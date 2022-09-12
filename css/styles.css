@@ -45,10 +45,6 @@ html {
   background-color: rgb(128 52 205);
 }
 
-.save-button:focus {
-  outline: none;
-}
-
 .text-padding-adjust:focus {
   outline: none;
   border: solid #562b81;
