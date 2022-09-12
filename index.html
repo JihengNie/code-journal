@@ -16,11 +16,39 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-  </header>
+
   <main>
+    <div class="heading">
+      <header class="container">
+        Code Journal
+      </header>
+    </div>
+    <div class="container">
+      <div class="row">
+        <h1>
+          New Entry
+        </h1>
+      </div>
+      <div class="row">
+        <div class="column-half remove-padding ">
+          <img class="column-full remove-padding " src="images/placeholder-image-square.jpg">
+        </div>
+        <div class="column-half">
+          <h3>Title</h3>
+          <input class="text-padding-adjus">
+          <h3>Photo URL</h3>
+          <input class="text-padding-adjus">
+        </div>
+      </div>
+      <div class="row">
+        <h3 class="column-full"> Notes </h3>
+        <textarea class="text-padding-adjus" rows="10"></textarea>
+        <button> Save </button>
+      </div>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
   </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
+
 </body>
 </html>
