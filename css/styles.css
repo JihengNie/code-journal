@@ -48,10 +48,38 @@ header {
   transition: background-color 0.15s ease;
 }
 
+.new-button {
+  margin: 1.75rem 0;
+  background-color: #562b81;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 10%;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
 .align-right {
   text-align: right;
 }
 
 .save-button:hover {
   background-color: rgb(128 52 205);
+}
+
+.space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.journal-feed {
+  list-style: none;
+  padding: 0;
+  line-height: 1.5rem;
+}
+
+.entry-header {
+  margin-top: 0;
 }
