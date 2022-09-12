@@ -31,4 +31,12 @@
   .column-half {
     width: 50%;
   }
+
+  .entry-header {
+    margin-top: 0;
+  }
+
+  .entry-items {
+    margin-bottom: 3rem;
+  }
 }
