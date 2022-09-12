@@ -53,3 +53,7 @@ html {
   outline: none;
   border: solid #562b81;
 }
+
+.photo {
+  object-fit: fill;
+}
