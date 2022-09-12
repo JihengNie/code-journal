@@ -17,17 +17,10 @@ function formSubmitted(event) {
     title: $textInputs[0].value,
     photoUrl: $textInputs[1].value,
     comment: $textInputs[2].value,
-    EntryId: data.nextEntryId
+    entryId: data.nextEntryId
   };
   data.nextEntryId++;
   data.entries.push(newEntry);
   $photo.src = 'images/placeholder-image-square.jpg';
   $formElement.reset();
-}
-
-window.addEventListener('beforeunload', storingData);
-
-function storingData(event) {
-  var dataJSON = JSON.stringify(data);
-  localStorage.setItem('code-journal', dataJSON);
 }

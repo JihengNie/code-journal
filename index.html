@@ -17,38 +17,48 @@
 </head>
 <body>
   <main>
-    <div class="heading">
-      <header class="container">
-        Code Journal
-      </header>
-    </div>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="column-full">
+            <h3 class="heading"> Code Journal</h3>
+          </div>
+        </div>
+      </div>
+    </header>
     <div data-view="entry-form">
       <form class="container new-entry">
         <div class="row">
-          <h1>
-            New Entry
-          </h1>
+          <div class="column-full">
+            <h1>
+              New Entry
+            </h1>
+          </div>
         </div>
         <div class="row">
-          <div class="column-half remove-padding ">
+          <div class="column-half">
             <img class="column-full remove-padding photo" src="images/placeholder-image-square.jpg" alt="Some photo">
           </div>
           <div class="column-half">
             <h3>Title</h3>
             <label for="title">
-              <input required type="text" class="text-adjust" id="title">
+              <input required type="text" name="title" class="text-adjust" id="title">
             </label>
             <h3>Photo URL</h3>
             <label for="photoUrl">
-              <input required type="text" class="text-adjust" id="photoUrl">
+              <input required type="text" name="photoUrl" class="text-adjust" id="photoUrl">
             </label>
           </div>
         </div>
         <div class="row">
-          <h3 class="column-full"> Notes </h3>
-          <label for="comment"></label>
-          <textarea required class="text-adjust" id="comment" rows="10"></textarea>
-          <input class="save-button" type="submit" value="SAVE"></input>
+          <div class="column-full">
+            <h3> Notes </h3>
+            <label for="comment"></label>
+            <textarea required class="text-adjust" name="comment" id="comment" rows="10"></textarea>
+            <div class="align-right">
+              <input class="save-button" type="submit" value="SAVE"></input>
+            </div>
+          </div>
         </div>
       </form>
     </div>
