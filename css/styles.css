@@ -1,9 +1,3 @@
-input,
-textarea {
-  display: block;
-  width: 100%;
-}
-
 img {
   object-fit: fill;
   padding: 0;
@@ -25,7 +19,7 @@ html {
   font-size: 1.75rem;
 }
 
-button {
+.save-button {
   margin: 1.75rem 0;
   margin-left: auto;
   margin-right: 0;
@@ -39,17 +33,19 @@ button {
   transition: background-color 0.15s ease;
 }
 
-.text-padding-adjust {
+.text-adjust {
+  display: block;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  width: 100%;
   border: 1px solid #bcbcbc;
 }
 
-button:hover {
+.save-button:hover {
   background-color: rgb(128 52 205);
 }
 
-button:focus {
+.save-button:focus {
   outline: none;
 }
 
