@@ -1,0 +1,57 @@
+img {
+  object-fit: fill;
+  padding: 0;
+}
+
+html {
+  background-color: #f0f0f0;
+  font-family: sans-serif;
+}
+
+header {
+  background-color: #562b81;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.heading {
+  font-weight: lighter;
+  letter-spacing: 1.5px;
+}
+
+.remove-padding {
+  padding: 0;
+}
+
+.text-adjust {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  width: 100%;
+  border: 1px solid #bcbcbc;
+}
+
+.text-adjust:focus {
+  outline: none;
+  border: solid #562b81;
+}
+
+.save-button {
+  margin: 1.75rem 0;
+  background-color: #562b81;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 10%;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.save-button:hover {
+  background-color: rgb(128 52 205);
+}

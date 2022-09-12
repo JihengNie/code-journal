@@ -16,11 +16,54 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-  </header>
   <main>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="column-full">
+            <h3 class="heading"> Code Journal</h3>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div data-view="entry-form">
+      <form class="container new-entry">
+        <div class="row">
+          <div class="column-full">
+            <h1>
+              New Entry
+            </h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-half">
+            <img class="column-full remove-padding photo" src="images/placeholder-image-square.jpg" alt="Some photo">
+          </div>
+          <div class="column-half">
+            <h3>Title</h3>
+            <label for="title">
+              <input required type="text" name="title" class="text-adjust" id="title">
+            </label>
+            <h3>Photo URL</h3>
+            <label for="photoUrl">
+              <input required type="text" name="photoUrl" class="text-adjust" id="photoUrl">
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <h3> Notes </h3>
+            <label for="comment"></label>
+            <textarea required class="text-adjust" name="comment" id="comment" rows="10"></textarea>
+            <div class="align-right">
+              <input class="save-button" type="submit" value="SAVE"></input>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
   </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>
