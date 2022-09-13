@@ -46,7 +46,7 @@ function creatingJournalEntry(newJournalEntry) {
   var tree = creatingDOMTree('li', { class: 'entry-items' }, [
     creatingDOMTree('div', { class: 'row' }, [
       creatingDOMTree('div', { class: 'column-half' }, [
-        creatingDOMTree('img', { class: 'column-full remove-padding photo', src: newJournalEntry.photoUrl, alt: 'Some photo' })
+        creatingDOMTree('img', { class: 'column-full remove-padding photo', alt: 'Some photo', src: newJournalEntry.photoUrl })
       ]),
       creatingDOMTree('div', { class: 'column-half' }, [
         creatingDOMTree('h2', { class: 'entry-header', textContent: newJournalEntry.title }),
@@ -57,26 +57,24 @@ function creatingJournalEntry(newJournalEntry) {
   return tree;
 }
 
-// var testListItem = creatingDOMTree('li', { class: 'entry-items' }, [
-//   creatingDOMTree('div', { class: 'row' }, [
-//     creatingDOMTree('div', { class: 'column-half' }, [
-//       creatingDOMTree('img', { class: 'column-full remove-padding photo', src: 'images/placeholder-image-square.jpg', alt: 'Some photo' })
-//     ]),
-//     creatingDOMTree('div', { class: 'column-half' }, [
-//       creatingDOMTree('h2', { class: 'entry-header', textContent: 'Ada Lovelace' }),
-//       creatingDOMTree('p', { textContent: 'Paragraph' }),
-//       creatingDOMTree('p', { textContent: 'Paragraph' })
-//     ])
-//   ])
-// ]);
+// var testObject = {
+//   title: 'Ada Lovelace',
+//   photoUrl: 'images/placeholder-image-square.jpg',
+//   comment: 'Words words words'
+// };
 
-// journalFeedList.appendChild(testListItem);
+// journalFeedList.appendChild(creatingJournalEntry(testObject));
 
-var testObject = {
-  title: 'Ada Lovelace',
-  photoUrl: 'images/placeholder-image-square.jpg',
-  comment: 'Words words words'
-};
+window.addEventListener('DOMContentLoaded', addingChildLoop);
 
-var maybeWorks = creatingJournalEntry(testObject);
-journalFeedList.appendChild(maybeWorks);
+var localData = {};
+var previousJournalJSON = localStorage.getItem('code-journal');
+if (previousJournalJSON) {
+  localData = JSON.parse(previousJournalJSON);
+}
+
+function addingChildLoop(event) {
+  for (var i = localData.entries.length - 1; i >= 0; i--) {
+    journalFeedList.appendChild(creatingJournalEntry(localData.entries[i]));
+  }
+}
