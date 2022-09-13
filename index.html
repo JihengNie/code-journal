@@ -22,14 +22,14 @@
         <div class="row">
           <div class="column-full flex-row">
             <h3 class="heading"> Code Journal</h3>
-            <nav class="nav-bar">
-              <a href="index.html" class="heading"> Entries</a>
+            <nav class="nav-bar heading">
+              <a class="nav-entries"> Entries</a>
             </nav>
           </div>
         </div>
       </div>
     </header>
-    <div data-view="entry-form">
+    <div data-view="entry-form" class="entry-form hidden">
       <form class="container new-entry">
         <div class="row">
           <div class="column-full">
@@ -64,7 +64,7 @@
       </form>
     </div>
     <!--  End of Data Entry -->
-    <div data-view="entries">
+    <div data-view="entries" class="entries">
       <div class="container">
         <div class="row">
           <div class="column-full space-between">
@@ -76,20 +76,8 @@
             </div>
           </div>
         </div>
+        <h4 class="no-entries-text">No Entries has been recorded</h4>
         <ul class="journal-feed">
-          <!-- <li class="entry-items">
-            <div class="row">
-              <div class="column-half">
-                <img class="column-full remove-padding photo" src="images/placeholder-image-square.jpg" alt="Some photo">
-              </div>
-              <div class="column-half">
-                <h2 class="entry-header">Ada Lovelace</h2>
-                <p> 1 in 5,000 north Atlantic lobsters are born bright blue. There are 10 human body parts that are only 3 letters
-                  long (eye hip arm leg ear toe jaw rib lip gum). A skunk's smell can be detected by a human a mile away. The word
-                  describes the state of not being able to remember the word you want.</p>
-              </div>
-            </div>
-          </li> -->
         </ul>
       </div>
     </div>

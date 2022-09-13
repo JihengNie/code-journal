@@ -1,15 +1,33 @@
+// variable definiitions
 var $photoUrlInput = document.querySelector('#photoUrl');
 var $photo = document.querySelector('.photo');
 var $textInputs = document.querySelectorAll('.text-adjust');
+var $noEntriesText = document.querySelector('.no-entries-text');
+var $formElement = document.querySelector('form');
+var journalFeedList = document.querySelector('ul');
+var $navEntries = document.querySelector('.nav-entries');
+var $navNewEntry = document.querySelector('.new-button');
+var $newEntryForm = document.querySelector('.entry-form');
+var $entriesPage = document.querySelector('.entries');
 
+// Adding event listeners
 $photoUrlInput.addEventListener('input', changeUrl);
+$formElement.addEventListener('submit', formSubmitted);
+window.addEventListener('DOMContentLoaded', addingChildLoop);
+$navEntries.addEventListener('click', navToNewEntry);
+$navNewEntry.addEventListener('click', navToEntries);
 
+// Parsing local data
+var localData = {};
+var previousJournalJSON = localStorage.getItem('code-journal');
+if (previousJournalJSON) {
+  localData = JSON.parse(previousJournalJSON);
+}
+
+// function definitions
 function changeUrl(event) {
   $photo.src = event.target.value;
 }
-
-var $formElement = document.querySelector('form');
-$formElement.addEventListener('submit', formSubmitted);
 
 function formSubmitted(event) {
   event.preventDefault();
@@ -23,6 +41,12 @@ function formSubmitted(event) {
   data.entries.push(newEntry);
   $photo.src = 'images/placeholder-image-square.jpg';
   $formElement.reset();
+  if (newEntry.entryId === 1) {
+    journalFeedList.appendChild(creatingJournalEntry(newEntry));
+    $noEntriesText.setAttribute('class', 'no-entries-text hidden');
+  } else {
+    journalFeedList.insertBefore(creatingJournalEntry(newEntry), journalFeedList.firstChild);
+  }
 }
 
 function creatingDOMTree(tagName, attributes, children = []) {
@@ -40,8 +64,6 @@ function creatingDOMTree(tagName, attributes, children = []) {
   return element;
 }
 
-var journalFeedList = document.querySelector('ul');
-
 function creatingJournalEntry(newJournalEntry) {
   var tree = creatingDOMTree('li', { class: 'entry-items' }, [
     creatingDOMTree('div', { class: 'row' }, [
@@ -57,24 +79,21 @@ function creatingJournalEntry(newJournalEntry) {
   return tree;
 }
 
-// var testObject = {
-//   title: 'Ada Lovelace',
-//   photoUrl: 'images/placeholder-image-square.jpg',
-//   comment: 'Words words words'
-// };
-
-// journalFeedList.appendChild(creatingJournalEntry(testObject));
-
-window.addEventListener('DOMContentLoaded', addingChildLoop);
-
-var localData = {};
-var previousJournalJSON = localStorage.getItem('code-journal');
-if (previousJournalJSON) {
-  localData = JSON.parse(previousJournalJSON);
-}
-
 function addingChildLoop(event) {
   for (var i = localData.entries.length - 1; i >= 0; i--) {
+    if (localData.entries[i].entryId > 1) {
+      $noEntriesText.setAttribute('class', 'no-entries-text hidden');
+    }
     journalFeedList.appendChild(creatingJournalEntry(localData.entries[i]));
   }
+}
+
+function navToEntries(event) {
+  $newEntryForm.setAttribute('class', 'entry-form');
+  $entriesPage.setAttribute('class', 'entries hidden');
+}
+
+function navToNewEntry(event) {
+  $newEntryForm.setAttribute('class', 'entry-form hidden');
+  $entriesPage.setAttribute('class', 'entries');
 }

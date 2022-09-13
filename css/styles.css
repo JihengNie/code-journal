@@ -90,12 +90,19 @@ header {
   margin-left: 1rem;
 }
 
+.no-entries-text {
+  justify-content: center;
+  text-align: center;
+  font-weight: 50;
+}
+
 a {
   color: white;
   font-size: 1rem;
   margin-top: 1.5rem;
 }
 
-a:link {
+a:hover {
   text-decoration: none;
+  cursor: pointer;
 }
