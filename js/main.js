@@ -40,6 +40,8 @@ function formSubmitted(event) {
   data.nextEntryId++;
   data.entries.push(newEntry);
   $photo.src = 'images/placeholder-image-square.jpg';
+  $newEntryForm.setAttribute('class', 'entry-form hidden');
+  $entriesPage.setAttribute('class', 'entries');
   $formElement.reset();
   if (newEntry.entryId === 1) {
     journalFeedList.appendChild(creatingJournalEntry(newEntry));
@@ -81,7 +83,7 @@ function creatingJournalEntry(newJournalEntry) {
 
 function addingChildLoop(event) {
   for (var i = localData.entries.length - 1; i >= 0; i--) {
-    if (localData.entries[i].entryId > 1) {
+    if (localData.entries[i].entryId >= 1) {
       $noEntriesText.setAttribute('class', 'no-entries-text hidden');
     }
     journalFeedList.appendChild(creatingJournalEntry(localData.entries[i]));
