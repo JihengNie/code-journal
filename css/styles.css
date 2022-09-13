@@ -74,8 +74,28 @@ header {
   justify-content: space-between;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .journal-feed {
   list-style: none;
   padding: 0;
   line-height: 1.5rem;
+}
+
+.nav-bar {
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+}
+
+a {
+  color: white;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+
+a:link {
+  text-decoration: none;
 }
