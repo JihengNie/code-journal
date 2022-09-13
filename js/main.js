@@ -4,7 +4,7 @@ var $photo = document.querySelector('.photo');
 var $textInputs = document.querySelectorAll('.text-adjust');
 var $noEntriesText = document.querySelector('.no-entries-text');
 var $formElement = document.querySelector('form');
-var journalFeedList = document.querySelector('ul');
+var $journalFeedList = document.querySelector('ul');
 var $navEntries = document.querySelector('.nav-entries');
 var $navNewEntry = document.querySelector('.new-button');
 var $newEntryForm = document.querySelector('.entry-form');
@@ -16,8 +16,18 @@ $formElement.addEventListener('submit', formSubmitted);
 window.addEventListener('DOMContentLoaded', addingChildLoop);
 $navEntries.addEventListener('click', navToNewEntry);
 $navNewEntry.addEventListener('click', navToEntries);
+$journalFeedList.addEventListener('click', editEntries);
 
 // function definitions
+function editEntries(event) {
+  if (event.target.className === 'edit-button') {
+    $newEntryForm.setAttribute('class', 'entry-form');
+    $entriesPage.setAttribute('class', 'entries hidden');
+    var temp = event.target.parentNode.parentNode.parentNode.parentNode.className.match(/\d+/g);
+    data.editing = temp[0];
+  }
+}
+
 function changeUrl(event) {
   $photo.src = event.target.value;
 }
@@ -36,7 +46,7 @@ function formSubmitted(event) {
   $newEntryForm.setAttribute('class', 'entry-form hidden');
   $entriesPage.setAttribute('class', 'entries');
   $formElement.reset();
-  journalFeedList.prepend(creatingJournalEntry(newEntry));
+  $journalFeedList.prepend(creatingJournalEntry(newEntry));
   $noEntriesText.setAttribute('class', 'no-entries-text hidden');
 }
 
@@ -56,7 +66,7 @@ function creatingDOMTree(tagName, attributes, children = []) {
 }
 
 function creatingJournalEntry(newJournalEntry) {
-  var tree = creatingDOMTree('li', { class: 'entry-items' }, [
+  var tree = creatingDOMTree('li', { class: 'entry-items' + newJournalEntry.entryId }, [
     creatingDOMTree('div', { class: 'row' }, [
       creatingDOMTree('div', { class: 'column-half' }, [
         creatingDOMTree('img', { class: 'column-full remove-padding photo', alt: 'Some photo', src: newJournalEntry.photoUrl })
@@ -77,7 +87,7 @@ function addingChildLoop(event) {
     if (data.entries.length >= 1) {
       $noEntriesText.setAttribute('class', 'no-entries-text hidden');
     }
-    journalFeedList.appendChild(creatingJournalEntry(data.entries[i]));
+    $journalFeedList.appendChild(creatingJournalEntry(data.entries[i]));
   }
 }
 
