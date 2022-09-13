@@ -62,7 +62,9 @@ function creatingJournalEntry(newJournalEntry) {
         creatingDOMTree('img', { class: 'column-full remove-padding photo', alt: 'Some photo', src: newJournalEntry.photoUrl })
       ]),
       creatingDOMTree('div', { class: 'column-half' }, [
-        creatingDOMTree('h2', { class: 'entry-header', textContent: newJournalEntry.title }),
+        creatingDOMTree('h2', { class: 'entry-header space-between', textContent: newJournalEntry.title }, [
+          creatingDOMTree('span', { class: 'edit-button', textContent: '✎' })
+        ]),
         creatingDOMTree('p', { textContent: newJournalEntry.comment })
       ])
     ])
