@@ -13,3 +13,9 @@ function storingData(event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('code-journal', dataJSON);
 }
+
+// Parsing local data
+var previousJournalJSON = localStorage.getItem('code-journal');
+if (previousJournalJSON) {
+  data = JSON.parse(previousJournalJSON);
+}
