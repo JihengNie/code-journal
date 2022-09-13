@@ -24,3 +24,59 @@ function formSubmitted(event) {
   $photo.src = 'images/placeholder-image-square.jpg';
   $formElement.reset();
 }
+
+function creatingDOMTree(tagName, attributes, children = []) {
+  var element = document.createElement(tagName);
+  for (var key in attributes) {
+    if (key === 'textContent') {
+      element.textContent = attributes.textContent;
+    } else {
+      element.setAttribute(key, attributes[key]);
+    }
+  }
+  for (var i = 0; i < children.length; i++) {
+    element.append(children[i]);
+  }
+  return element;
+}
+
+var journalFeedList = document.querySelector('ul');
+
+function creatingJournalEntry(newJournalEntry) {
+  var tree = creatingDOMTree('li', { class: 'entry-items' }, [
+    creatingDOMTree('div', { class: 'row' }, [
+      creatingDOMTree('div', { class: 'column-half' }, [
+        creatingDOMTree('img', { class: 'column-full remove-padding photo', src: newJournalEntry.photoUrl, alt: 'Some photo' })
+      ]),
+      creatingDOMTree('div', { class: 'column-half' }, [
+        creatingDOMTree('h2', { class: 'entry-header', textContent: newJournalEntry.title }),
+        creatingDOMTree('p', { textContent: newJournalEntry.comment })
+      ])
+    ])
+  ]);
+  return tree;
+}
+
+// var testListItem = creatingDOMTree('li', { class: 'entry-items' }, [
+//   creatingDOMTree('div', { class: 'row' }, [
+//     creatingDOMTree('div', { class: 'column-half' }, [
+//       creatingDOMTree('img', { class: 'column-full remove-padding photo', src: 'images/placeholder-image-square.jpg', alt: 'Some photo' })
+//     ]),
+//     creatingDOMTree('div', { class: 'column-half' }, [
+//       creatingDOMTree('h2', { class: 'entry-header', textContent: 'Ada Lovelace' }),
+//       creatingDOMTree('p', { textContent: 'Paragraph' }),
+//       creatingDOMTree('p', { textContent: 'Paragraph' })
+//     ])
+//   ])
+// ]);
+
+// journalFeedList.appendChild(testListItem);
+
+var testObject = {
+  title: 'Ada Lovelace',
+  photoUrl: 'images/placeholder-image-square.jpg',
+  comment: 'Words words words'
+};
+
+var maybeWorks = creatingJournalEntry(testObject);
+journalFeedList.appendChild(maybeWorks);
