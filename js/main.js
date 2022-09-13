@@ -17,13 +17,6 @@ window.addEventListener('DOMContentLoaded', addingChildLoop);
 $navEntries.addEventListener('click', navToNewEntry);
 $navNewEntry.addEventListener('click', navToEntries);
 
-// Parsing local data
-var localData = {};
-var previousJournalJSON = localStorage.getItem('code-journal');
-if (previousJournalJSON) {
-  localData = JSON.parse(previousJournalJSON);
-}
-
 // function definitions
 function changeUrl(event) {
   $photo.src = event.target.value;
@@ -43,12 +36,8 @@ function formSubmitted(event) {
   $newEntryForm.setAttribute('class', 'entry-form hidden');
   $entriesPage.setAttribute('class', 'entries');
   $formElement.reset();
-  if (newEntry.entryId === 1) {
-    journalFeedList.appendChild(creatingJournalEntry(newEntry));
-    $noEntriesText.setAttribute('class', 'no-entries-text hidden');
-  } else {
-    journalFeedList.insertBefore(creatingJournalEntry(newEntry), journalFeedList.firstChild);
-  }
+  journalFeedList.prepend(creatingJournalEntry(newEntry));
+  $noEntriesText.setAttribute('class', 'no-entries-text hidden');
 }
 
 function creatingDOMTree(tagName, attributes, children = []) {
@@ -82,11 +71,11 @@ function creatingJournalEntry(newJournalEntry) {
 }
 
 function addingChildLoop(event) {
-  for (var i = localData.entries.length - 1; i >= 0; i--) {
-    if (localData.entries[i].entryId >= 1) {
+  for (var i = data.entries.length - 1; i >= 0; i--) {
+    if (data.entries.length >= 1) {
       $noEntriesText.setAttribute('class', 'no-entries-text hidden');
     }
-    journalFeedList.appendChild(creatingJournalEntry(localData.entries[i]));
+    journalFeedList.appendChild(creatingJournalEntry(data.entries[i]));
   }
 }
 
