@@ -22,18 +22,29 @@ $navEntries.addEventListener('click', navToNewEntry);
 $navNewEntry.addEventListener('click', navToEntries);
 $journalFeedList.addEventListener('click', editEntries);
 
+// Test space
+// $journalFeedList.addEventListener('click', test);
+//
+
+// function test(event) {
+//   console.log(event.target);
+//   console.log(event.target.closest('.list-item'));
+//   console.log(event.target.closest('.list-item').attributes);
+//   console.log(event.target.closest('.list-item').attributes['data-entry-id'].value);
+// }
+
 // function definitions
 function editEntries(event) {
   if (event.target.className === 'edit-button') {
     $newEntryForm.setAttribute('class', 'entry-form');
     $entriesPage.setAttribute('class', 'entries hidden');
     // Get the entry number from my list item class
-    var entryNumber = event.target.closest('.data-entry-id').className.match(/\d+/g);
-    data.editing = entryNumber[0];
+    data.editing = event.target.closest('.list-item').attributes['data-entry-id'].value;
+    data.editing = parseInt(data.editing, 10);
     $entryFormTitle.className = 'entry-form-title hidden';
     $editTitle.className = 'edit-form-title';
     for (var i = 0; i < data.entries.length; i++) {
-      if (data.entries[i].entryId === parseInt(data.editing, 10)) {
+      if (data.entries[i].entryId === data.editing) {
         $photoUrlInput.value = data.entries[i].photoUrl;
         $photo.src = $photoUrlInput.value;
         $titleInput.value = data.entries[i].title;
@@ -58,14 +69,14 @@ function formSubmitted(event) {
   // Editing or adding items
   if (data.editing) {
     for (var i = 0; i < data.entries.length; i++) {
-      if (data.entries[i].entryId === parseInt(data.editing, 10)) {
+      if (data.entries[i].entryId === data.editing) {
         data.entries[i].title = newEntry.title;
         data.entries[i].photoUrl = newEntry.photoUrl;
         data.entries[i].comment = newEntry.comment;
       }
     }
     for (var j = 0; j < $journalFeedList.children.length; j++) {
-      if (parseInt($journalFeedList.children[j].className.match(/\d+/g), 10) === parseInt(data.editing, 10)) {
+      if (parseInt($journalFeedList.children[j].attributes['data-entry-id'].value, 10) === data.editing) {
         $journalFeedList.replaceChild(creatingJournalEntry(newEntry), $journalFeedList.children[j]);
       }
     }
@@ -100,7 +111,7 @@ function creatingDOMTree(tagName, attributes, children = []) {
 }
 
 function creatingJournalEntry(newJournalEntry) {
-  var tree = creatingDOMTree('li', { class: 'data-entry-id' + ' ' + newJournalEntry.entryId }, [
+  var tree = creatingDOMTree('li', { class: 'list-item' + ' ' + newJournalEntry.entryId, 'data-entry-id': newJournalEntry.entryId }, [
     creatingDOMTree('div', { class: 'row' }, [
       creatingDOMTree('div', { class: 'column-half' }, [
         creatingDOMTree('img', { class: 'column-full remove-padding photo', alt: 'Some photo', src: newJournalEntry.photoUrl })
