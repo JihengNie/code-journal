@@ -28,14 +28,18 @@ function editEntries(event) {
     $newEntryForm.setAttribute('class', 'entry-form');
     $entriesPage.setAttribute('class', 'entries hidden');
     // Get the entry number from my list item class
-    var entryNumber = event.target.parentNode.parentNode.parentNode.parentNode.className.match(/\d+/g);
+    var entryNumber = event.target.closest('.data-entry-id').className.match(/\d+/g);
     data.editing = entryNumber[0];
     $entryFormTitle.className = 'entry-form-title hidden';
     $editTitle.className = 'edit-form-title';
-    $photoUrlInput.value = data.entries[data.editing - 1].photoUrl;
-    $photo.src = $photoUrlInput.value;
-    $titleInput.value = data.entries[data.editing - 1].title;
-    $commentInput.value = data.entries[data.editing - 1].comment;
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === parseInt(data.editing, 10)) {
+        $photoUrlInput.value = data.entries[i].photoUrl;
+        $photo.src = $photoUrlInput.value;
+        $titleInput.value = data.entries[i].title;
+        $commentInput.value = data.entries[i].comment;
+      }
+    }
   }
 }
 
@@ -53,20 +57,23 @@ function formSubmitted(event) {
   };
   // Editing or adding items
   if (data.editing) {
-    data.entries[data.editing - 1].title = newEntry.title;
-    data.entries[data.editing - 1].photoUrl = newEntry.photoUrl;
-    data.entries[data.editing - 1].comment = newEntry.comment;
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === parseInt(data.editing, 10)) {
+        data.entries[i].title = newEntry.title;
+        data.entries[i].photoUrl = newEntry.photoUrl;
+        data.entries[i].comment = newEntry.comment;
+      }
+    }
+    for (var j = 0; j < $journalFeedList.children.length; j++) {
+      if (parseInt($journalFeedList.children[j].className.match(/\d+/g), 10) === parseInt(data.editing, 10)) {
+        $journalFeedList.replaceChild(creatingJournalEntry(newEntry), $journalFeedList.children[j]);
+      }
+    }
     data.editing = null;
   } else {
     data.nextEntryId++;
     data.entries.push(newEntry);
-  }
-  // Adding all items into the list from the data model
-  $journalFeedList.innerHTML = '';
-  for (var i = 0; i < data.entries.length; i++) {
-    var tempDomTree = creatingJournalEntry(data.entries[i]);
-    $journalFeedList.prepend(tempDomTree);
-    tempDomTree = {};
+    $journalFeedList.prepend(creatingJournalEntry(newEntry));
   }
 
   $photo.src = 'images/placeholder-image-square.jpg';
@@ -74,7 +81,6 @@ function formSubmitted(event) {
   $entriesPage.setAttribute('class', 'entries');
   $formElement.reset();
   $noEntriesText.setAttribute('class', 'no-entries-text hidden');
-  $entryFormTitle.className = 'entry-form-title hidden';
   $entryFormTitle.className = 'entry-form-title';
 }
 
@@ -94,7 +100,7 @@ function creatingDOMTree(tagName, attributes, children = []) {
 }
 
 function creatingJournalEntry(newJournalEntry) {
-  var tree = creatingDOMTree('li', { class: 'entry-items' + ' ' + newJournalEntry.entryId }, [
+  var tree = creatingDOMTree('li', { class: 'data-entry-id' + ' ' + newJournalEntry.entryId }, [
     creatingDOMTree('div', { class: 'row' }, [
       creatingDOMTree('div', { class: 'column-half' }, [
         creatingDOMTree('img', { class: 'column-full remove-padding photo', alt: 'Some photo', src: newJournalEntry.photoUrl })
