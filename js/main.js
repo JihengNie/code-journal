@@ -24,13 +24,13 @@ $journalFeedList.addEventListener('click', editEntries);
 
 // Test space
 // $journalFeedList.addEventListener('click', test);
-//
 
 // function test(event) {
 //   console.log(event.target);
 //   console.log(event.target.closest('.list-item'));
 //   console.log(event.target.closest('.list-item').attributes);
 //   console.log(event.target.closest('.list-item').attributes['data-entry-id'].value);
+//   console.log(event.target.closest('.list-item').getAttribute('data-entry-id'));
 // }
 
 // function definitions
@@ -39,7 +39,7 @@ function editEntries(event) {
     $newEntryForm.setAttribute('class', 'entry-form');
     $entriesPage.setAttribute('class', 'entries hidden');
     // Get the entry number from my list item class
-    data.editing = event.target.closest('.list-item').attributes['data-entry-id'].value;
+    data.editing = event.target.closest('.list-item').getAttribute('data-entry-id');
     data.editing = parseInt(data.editing, 10);
     $entryFormTitle.className = 'entry-form-title hidden';
     $editTitle.className = 'edit-form-title';
@@ -76,7 +76,7 @@ function formSubmitted(event) {
       }
     }
     for (var j = 0; j < $journalFeedList.children.length; j++) {
-      if (parseInt($journalFeedList.children[j].attributes['data-entry-id'].value, 10) === data.editing) {
+      if (parseInt($journalFeedList.children[j].getAttribute('data-entry-id'), 10) === data.editing) {
         $journalFeedList.replaceChild(creatingJournalEntry(newEntry), $journalFeedList.children[j]);
       }
     }
