@@ -29,6 +29,16 @@
         </div>
       </div>
     </header>
+    <div class="pop-up center hidden">
+      <div class="coloum-full">
+        <h4 class="center">Are you sure you want to delete this entry?</h4>
+      </div>
+      <div class="column-full space-between">
+        <p class="center pop-up-buttons cancel-button">CANCEL</p>
+        <p class="center pop-up-buttons confirm-button">CONFIRM</p>
+      </div>
+    </div>
+    <!-- End of pop up -->
     <div data-view="entry-form" class="entry-form hidden">
       <form class="container new-entry">
         <div class="row">
@@ -57,7 +67,8 @@
             <h3> Notes </h3>
             <label for="comment"></label>
             <textarea required class="text-adjust" name="comment" id="comment" rows="10"></textarea>
-            <div class="align-right">
+            <div class="space-between">
+              <p class="delete-entry hidden"><u>Delete Entry</u></p>
               <input class="save-button" type="submit" value="SAVE"></input>
             </div>
           </div>

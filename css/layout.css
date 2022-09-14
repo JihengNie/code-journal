@@ -39,4 +39,9 @@
   .entry-items {
     margin-bottom: 3rem;
   }
+
+  .pop-up {
+    position: relative;
+    top: 15rem;
+  }
 }
