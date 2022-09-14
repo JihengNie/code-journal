@@ -39,4 +39,19 @@
   .entry-items {
     margin-bottom: 3rem;
   }
+
+  .pop-up {
+    height: 10rem;
+    width: 25rem;
+    top: 10rem;
+    left: 40%;
+  }
+
+  .pop-up-buttons {
+    margin: 2.5rem 2rem;
+  }
+
+  .pop-up-question {
+    font-size: 1rem;
+  }
 }

@@ -13,6 +13,10 @@ var $editTitle = document.querySelector('.edit-form-title');
 var $entryFormTitle = document.querySelector('.entry-form-title');
 var $titleInput = document.querySelector('#title');
 var $commentInput = document.querySelector('#comment');
+var $deleteEntryButton = document.querySelector('.delete-entry');
+var $comfirmDeleteButton = document.querySelector('.confirm-button');
+var $cancelDeleteButton = document.querySelector('.cancel-button');
+var $popUp = document.querySelector('.pop-up');
 
 // Adding event listeners
 $photoUrlInput.addEventListener('input', changeUrl);
@@ -21,7 +25,9 @@ window.addEventListener('DOMContentLoaded', addingChildLoop);
 $navEntries.addEventListener('click', navToNewEntry);
 $navNewEntry.addEventListener('click', navToEntries);
 $journalFeedList.addEventListener('click', editEntries);
-
+$cancelDeleteButton.addEventListener('click', hidePopUp);
+$deleteEntryButton.addEventListener('click', showPopup);
+$comfirmDeleteButton.addEventListener('click', deleteEntries);
 // Test space
 // $journalFeedList.addEventListener('click', test);
 
@@ -34,8 +40,37 @@ $journalFeedList.addEventListener('click', editEntries);
 // }
 
 // function definitions
+function deleteEntries(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing) {
+      data.entries.splice(i, 1);
+      for (var j = 0; j < $journalFeedList.children.length; j++) {
+        if (parseInt($journalFeedList.children[j].getAttribute('data-entry-id'), 10) === data.editing) {
+          $journalFeedList.removeChild($journalFeedList.children[j]);
+          $newEntryForm.className = 'entry-form hidden';
+          $entriesPage.className = 'entries';
+          $popUp.className = 'pop-up center hidden';
+        }
+        if ($journalFeedList.children.length === 0) {
+          $noEntriesText.className = 'no-entries-text';
+        }
+      }
+      data.editing = null;
+    }
+  }
+}
+
+function showPopup(event) {
+  $popUp.className = 'pop-up center';
+}
+
+function hidePopUp(event) {
+  $popUp.className = 'pop-up center hidden';
+}
+
 function editEntries(event) {
   if (event.target.className === 'edit-button') {
+    $deleteEntryButton.className = 'delete-entry';
     $newEntryForm.setAttribute('class', 'entry-form');
     $entriesPage.setAttribute('class', 'entries hidden');
     // Get the entry number from my list item class
@@ -77,6 +112,7 @@ function formSubmitted(event) {
     }
     for (var j = 0; j < $journalFeedList.children.length; j++) {
       if (parseInt($journalFeedList.children[j].getAttribute('data-entry-id'), 10) === data.editing) {
+        newEntry.entryId = data.editing;
         $journalFeedList.replaceChild(creatingJournalEntry(newEntry), $journalFeedList.children[j]);
       }
     }
@@ -93,6 +129,7 @@ function formSubmitted(event) {
   $formElement.reset();
   $noEntriesText.setAttribute('class', 'no-entries-text hidden');
   $entryFormTitle.className = 'entry-form-title';
+  $deleteEntryButton.className = 'delete-entry hidden';
 }
 
 function creatingDOMTree(tagName, attributes, children = []) {
