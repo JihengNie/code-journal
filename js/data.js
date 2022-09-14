@@ -19,3 +19,10 @@ var previousJournalJSON = localStorage.getItem('code-journal');
 if (previousJournalJSON) {
   data = JSON.parse(previousJournalJSON);
 }
+
+// var exampleEntry = {
+//   comment: 'Phone',
+//   entryId: 2,
+//   photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png',
+//   title: 'Something'
+// };

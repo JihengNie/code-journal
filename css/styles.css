@@ -1,3 +1,4 @@
+/* stylelint-disable property-no-vendor-prefix */
 img {
   object-fit: fill;
   padding: 0;
@@ -104,5 +105,15 @@ a {
 
 a:hover {
   text-decoration: none;
+  cursor: pointer;
+}
+
+.edit-button {
+  display: inline-block;
+  transform: rotate(90deg);
+  color: #562b81;
+}
+
+.edit-button:hover {
   cursor: pointer;
 }

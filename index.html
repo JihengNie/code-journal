@@ -33,7 +33,8 @@
       <form class="container new-entry">
         <div class="row">
           <div class="column-full">
-            <h1> New Entry </h1>
+            <h1 class="entry-form-title"> New Entry </h1>
+            <h1 class="edit-form-title hidden"> Edit Entry </h1>
           </div>
         </div>
         <div class="row">
@@ -43,11 +44,11 @@
           <div class="column-half">
             <h3>Title</h3>
             <label for="title">
-              <input required type="text" name="title" class="text-adjust" id="title">
+              <input required type="text" name="title" class="text-adjust title" id="title">
             </label>
             <h3>Photo URL</h3>
             <label for="photoUrl">
-              <input required type="text" name="photoUrl" class="text-adjust" id="photoUrl">
+              <input required type="text" name="photoUrl" class="text-adjust comment" id="photoUrl">
             </label>
           </div>
         </div>
@@ -76,8 +77,19 @@
             </div>
           </div>
         </div>
-        <h4 class="no-entries-text">No Entries has been recorded</h4>
+        <h4 class="no-entries-text">No Entries has been recorded </h4>
         <ul class="journal-feed">
+          <!-- <li class="entry-items">
+            <div class="row">
+              <div class="column-half">
+                <img class="column-full remove-padding photo" src="images/placeholder-image-square.jpg">
+              </div>
+              <div class="column-half ">
+                <h2 class="entry-header space-between"> Header <span class="edit-button">✎</span></h2>
+                <p> Words words</p>
+              </div>
+            </div>
+          </li> -->
         </ul>
       </div>
     </div>
