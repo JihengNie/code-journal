@@ -9,6 +9,10 @@ var $navEntries = document.querySelector('.nav-entries');
 var $navNewEntry = document.querySelector('.new-button');
 var $newEntryForm = document.querySelector('.entry-form');
 var $entriesPage = document.querySelector('.entries');
+var $editTitle = document.querySelector('.edit-form-title');
+var $entryFormTitle = document.querySelector('.entry-form-title');
+var $titleInput = document.querySelector('#title');
+var $commentInput = document.querySelector('#comment');
 
 // Adding event listeners
 $photoUrlInput.addEventListener('input', changeUrl);
@@ -25,6 +29,13 @@ function editEntries(event) {
     $entriesPage.setAttribute('class', 'entries hidden');
     var temp = event.target.parentNode.parentNode.parentNode.parentNode.className.match(/\d+/g);
     data.editing = temp[0];
+    $entryFormTitle.className = 'entry-form-title hidden';
+    $editTitle.className = 'edit-form-title';
+    $photoUrlInput.value = data.entries[data.editing - 1].photoUrl;
+    $photo.src = $photoUrlInput.value;
+    $titleInput.value = data.entries[data.editing - 1].title;
+    $commentInput.value = data.entries[data.editing - 1].comment;
+
   }
 }
 
@@ -48,6 +59,8 @@ function formSubmitted(event) {
   $formElement.reset();
   $journalFeedList.prepend(creatingJournalEntry(newEntry));
   $noEntriesText.setAttribute('class', 'no-entries-text hidden');
+  $entryFormTitle.className = 'entry-form-title hidden';
+  $entryFormTitle.className = 'entry-form-title';
 }
 
 function creatingDOMTree(tagName, attributes, children = []) {
@@ -94,9 +107,12 @@ function addingChildLoop(event) {
 function navToEntries(event) {
   $newEntryForm.setAttribute('class', 'entry-form');
   $entriesPage.setAttribute('class', 'entries hidden');
+  $editTitle.className = 'edit-form-title hidden';
 }
 
 function navToNewEntry(event) {
   $newEntryForm.setAttribute('class', 'entry-form hidden');
   $entriesPage.setAttribute('class', 'entries');
+  $entryFormTitle.className = 'entry-form-title';
+  $editTitle.className = 'edit-form-title hidden';
 }
