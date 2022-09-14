@@ -112,6 +112,7 @@ function formSubmitted(event) {
     }
     for (var j = 0; j < $journalFeedList.children.length; j++) {
       if (parseInt($journalFeedList.children[j].getAttribute('data-entry-id'), 10) === data.editing) {
+        newEntry.entryId = data.editing;
         $journalFeedList.replaceChild(creatingJournalEntry(newEntry), $journalFeedList.children[j]);
       }
     }
