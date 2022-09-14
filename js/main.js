@@ -35,7 +35,6 @@ function editEntries(event) {
     $photo.src = $photoUrlInput.value;
     $titleInput.value = data.entries[data.editing - 1].title;
     $commentInput.value = data.entries[data.editing - 1].comment;
-
   }
 }
 
@@ -51,13 +50,28 @@ function formSubmitted(event) {
     comment: $textInputs[2].value,
     entryId: data.nextEntryId
   };
-  data.nextEntryId++;
-  data.entries.push(newEntry);
+  // Editing or adding items
+  if (data.editing) {
+    data.entries[data.editing - 1].title = newEntry.title;
+    data.entries[data.editing - 1].photoUrl = newEntry.photoUrl;
+    data.entries[data.editing - 1].comment = newEntry.comment;
+    data.editing = null;
+  } else {
+    data.nextEntryId++;
+    data.entries.push(newEntry);
+  }
+  // Adding all items into the list from the data model
+  $journalFeedList.innerHTML = '';
+  for (var i = 0; i < data.entries.length; i++) {
+    var temp = creatingJournalEntry(data.entries[i]);
+    $journalFeedList.prepend(temp);
+    temp = {};
+  }
+
   $photo.src = 'images/placeholder-image-square.jpg';
   $newEntryForm.setAttribute('class', 'entry-form hidden');
   $entriesPage.setAttribute('class', 'entries');
   $formElement.reset();
-  $journalFeedList.prepend(creatingJournalEntry(newEntry));
   $noEntriesText.setAttribute('class', 'no-entries-text hidden');
   $entryFormTitle.className = 'entry-form-title hidden';
   $entryFormTitle.className = 'entry-form-title';
@@ -79,7 +93,7 @@ function creatingDOMTree(tagName, attributes, children = []) {
 }
 
 function creatingJournalEntry(newJournalEntry) {
-  var tree = creatingDOMTree('li', { class: 'entry-items' + newJournalEntry.entryId }, [
+  var tree = creatingDOMTree('li', { class: 'entry-items' + ' ' + newJournalEntry.entryId }, [
     creatingDOMTree('div', { class: 'row' }, [
       creatingDOMTree('div', { class: 'column-half' }, [
         creatingDOMTree('img', { class: 'column-full remove-padding photo', alt: 'Some photo', src: newJournalEntry.photoUrl })
