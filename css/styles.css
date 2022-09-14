@@ -135,13 +135,18 @@ a:hover {
   margin: auto;
 }
 
+.pop-up-question {
+  font-size: 0.9rem;
+}
+
 .pop-up {
   background-color: white;
   height: 10rem;
-  width: 25rem;
+  width: 20rem;
   padding: 2rem 0;
-  position: relative;
+  position: absolute;
   top: 10rem;
+  left: 40%;
   border-radius: 8%;
   display: flex;
   flex-direction: column;
@@ -151,7 +156,7 @@ a:hover {
 
 .pop-up-buttons {
   background-color: red;
-  margin: 2.5rem 2rem;
+  margin: 2.5rem 1rem;
   margin-bottom: 0;
   border-radius: 8%;
   color: white;

@@ -47,6 +47,12 @@ function deleteEntries(event) {
       for (var j = 0; j < $journalFeedList.children.length; j++) {
         if (parseInt($journalFeedList.children[j].getAttribute('data-entry-id'), 10) === data.editing) {
           $journalFeedList.removeChild($journalFeedList.children[j]);
+          $newEntryForm.className = 'entry-form hidden';
+          $entriesPage.className = 'entries';
+          $popUp.className = 'pop-up center hidden';
+        }
+        if ($journalFeedList.children.length === 0) {
+          $noEntriesText.className = 'no-entries-text';
         }
       }
       data.editing = null;
