@@ -27,8 +27,9 @@ function editEntries(event) {
   if (event.target.className === 'edit-button') {
     $newEntryForm.setAttribute('class', 'entry-form');
     $entriesPage.setAttribute('class', 'entries hidden');
-    var temp = event.target.parentNode.parentNode.parentNode.parentNode.className.match(/\d+/g);
-    data.editing = temp[0];
+    // Get the entry number from my list item class
+    var entryNumber = event.target.parentNode.parentNode.parentNode.parentNode.className.match(/\d+/g);
+    data.editing = entryNumber[0];
     $entryFormTitle.className = 'entry-form-title hidden';
     $editTitle.className = 'edit-form-title';
     $photoUrlInput.value = data.entries[data.editing - 1].photoUrl;
@@ -63,9 +64,9 @@ function formSubmitted(event) {
   // Adding all items into the list from the data model
   $journalFeedList.innerHTML = '';
   for (var i = 0; i < data.entries.length; i++) {
-    var temp = creatingJournalEntry(data.entries[i]);
-    $journalFeedList.prepend(temp);
-    temp = {};
+    var tempDomTree = creatingJournalEntry(data.entries[i]);
+    $journalFeedList.prepend(tempDomTree);
+    tempDomTree = {};
   }
 
   $photo.src = 'images/placeholder-image-square.jpg';
