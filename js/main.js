@@ -14,7 +14,7 @@ var $entryFormTitle = document.querySelector('.entry-form-title');
 var $titleInput = document.querySelector('#title');
 var $commentInput = document.querySelector('#comment');
 var $deleteEntryButton = document.querySelector('.delete-entry');
-// var $comfirmDeleteButton = document.querySelector('.confirm-button');
+var $comfirmDeleteButton = document.querySelector('.confirm-button');
 var $cancelDeleteButton = document.querySelector('.cancel-button');
 var $popUp = document.querySelector('.pop-up');
 
@@ -27,6 +27,7 @@ $navNewEntry.addEventListener('click', navToEntries);
 $journalFeedList.addEventListener('click', editEntries);
 $cancelDeleteButton.addEventListener('click', hidePopUp);
 $deleteEntryButton.addEventListener('click', showPopup);
+$comfirmDeleteButton.addEventListener('click', deleteEntries);
 // Test space
 // $journalFeedList.addEventListener('click', test);
 
@@ -39,6 +40,20 @@ $deleteEntryButton.addEventListener('click', showPopup);
 // }
 
 // function definitions
+function deleteEntries(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing) {
+      data.entries.splice(i, 1);
+      for (var j = 0; j < $journalFeedList.children.length; j++) {
+        if (parseInt($journalFeedList.children[j].getAttribute('data-entry-id'), 10) === data.editing) {
+          $journalFeedList.removeChild($journalFeedList.children[j]);
+        }
+      }
+      data.editing = null;
+    }
+  }
+}
+
 function showPopup(event) {
   $popUp.className = 'pop-up center';
 }
