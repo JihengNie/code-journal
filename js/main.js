@@ -17,6 +17,9 @@ var $deleteEntryButton = document.querySelector('.delete-entry');
 var $comfirmDeleteButton = document.querySelector('.confirm-button');
 var $cancelDeleteButton = document.querySelector('.cancel-button');
 var $popUp = document.querySelector('.pop-up');
+var $searchBar = document.querySelector('.search-bar');
+var $searchButton = document.querySelector('.search-button');
+var $noSearchResult = document.querySelector('.no-search-result-text');
 
 // Adding event listeners
 $photoUrlInput.addEventListener('input', changeUrl);
@@ -28,6 +31,8 @@ $journalFeedList.addEventListener('click', editEntries);
 $cancelDeleteButton.addEventListener('click', hidePopUp);
 $deleteEntryButton.addEventListener('click', showPopup);
 $comfirmDeleteButton.addEventListener('click', deleteEntries);
+$searchButton.addEventListener('click', buttonTextSearch);
+
 // Test space
 // $journalFeedList.addEventListener('click', test);
 
@@ -40,6 +45,23 @@ $comfirmDeleteButton.addEventListener('click', deleteEntries);
 // }
 
 // function definitions
+function buttonTextSearch(event) {
+  var counter = $journalFeedList.children.length - 1;
+  for (var j = $journalFeedList.children.length - 1; j >= 0; j--) {
+    if (data.entries[j].title.toLowerCase().includes($searchBar.value.toLowerCase()) || data.entries[j].comment.toLowerCase().includes($searchBar.value.toLowerCase())) {
+      $journalFeedList.children[$journalFeedList.children.length - 1 - j].className = 'list-item';
+      $noSearchResult.className = 'no-search-result-text hidden';
+    } else {
+      $journalFeedList.children[$journalFeedList.children.length - 1 - j].className = 'list-item hidden';
+      counter--;
+    }
+    if (counter === 0) {
+      $noSearchResult.className = 'no-search-result-text';
+    }
+  }
+  // $searchBar.value = '';
+}
+
 function deleteEntries(event) {
   for (var i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryId === data.editing) {
@@ -148,7 +170,7 @@ function creatingDOMTree(tagName, attributes, children = []) {
 }
 
 function creatingJournalEntry(newJournalEntry) {
-  var tree = creatingDOMTree('li', { class: 'list-item' + ' ' + newJournalEntry.entryId, 'data-entry-id': newJournalEntry.entryId }, [
+  var tree = creatingDOMTree('li', { class: 'list-item', 'data-entry-id': newJournalEntry.entryId }, [
     creatingDOMTree('div', { class: 'row' }, [
       creatingDOMTree('div', { class: 'column-half' }, [
         creatingDOMTree('img', { class: 'column-full remove-padding photo', alt: 'Some photo', src: newJournalEntry.photoUrl })
@@ -177,11 +199,21 @@ function navToEntries(event) {
   $newEntryForm.setAttribute('class', 'entry-form');
   $entriesPage.setAttribute('class', 'entries hidden');
   $editTitle.className = 'edit-form-title hidden';
+  for (var j = $journalFeedList.children.length - 1; j >= 0; j--) {
+    $journalFeedList.children[j].className = 'list-item';
+  }
+  $noSearchResult.className = 'no-search-result-text hidden';
 }
 
 function navToNewEntry(event) {
+  $formElement.reset();
+  $photo.src = 'images/placeholder-image-square.jpg';
   $newEntryForm.setAttribute('class', 'entry-form hidden');
   $entriesPage.setAttribute('class', 'entries');
   $entryFormTitle.className = 'entry-form-title';
   $editTitle.className = 'edit-form-title hidden';
+  for (var j = $journalFeedList.children.length - 1; j >= 0; j--) {
+    $journalFeedList.children[j].className = 'list-item';
+  }
+  $noSearchResult.className = 'no-search-result-text hidden';
 }
