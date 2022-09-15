@@ -45,8 +45,9 @@ $searchButton.addEventListener('click', buttonTextSearch);
 // }
 
 // function definitions
+
 function buttonTextSearch(event) {
-  var counter = $journalFeedList.children.length - 1;
+  var counter = $journalFeedList.children.length;
   for (var j = $journalFeedList.children.length - 1; j >= 0; j--) {
     if (data.entries[j].title.toLowerCase().includes($searchBar.value.toLowerCase()) || data.entries[j].comment.toLowerCase().includes($searchBar.value.toLowerCase())) {
       $journalFeedList.children[$journalFeedList.children.length - 1 - j].className = 'list-item';
