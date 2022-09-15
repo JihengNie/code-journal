@@ -20,6 +20,8 @@ var $popUp = document.querySelector('.pop-up');
 var $searchBar = document.querySelector('.search-bar');
 var $searchButton = document.querySelector('.search-button');
 var $noSearchResult = document.querySelector('.no-search-result-text');
+var $dropDownMenu = document.querySelector('.drop-down-menu');
+var $rootSelector = document.querySelector(':root');
 
 // Adding event listeners
 $photoUrlInput.addEventListener('input', changeUrl);
@@ -32,7 +34,7 @@ $cancelDeleteButton.addEventListener('click', hidePopUp);
 $deleteEntryButton.addEventListener('click', showPopup);
 $comfirmDeleteButton.addEventListener('click', deleteEntries);
 $searchButton.addEventListener('click', buttonTextSearch);
-
+$dropDownMenu.addEventListener('change', moodChanger);
 // Test space
 // $journalFeedList.addEventListener('click', test);
 
@@ -45,6 +47,22 @@ $searchButton.addEventListener('click', buttonTextSearch);
 // }
 
 // function definitions
+
+function moodChanger(event) {
+  if (event.target.value === 'default') {
+    $rootSelector.style.setProperty('--header-color', '#562b81');
+    $rootSelector.style.setProperty('--button-color', '#562b81');
+    $rootSelector.style.setProperty('--background-color', '#f0f0f0');
+  } else if (event.target.value === 'blue') {
+    $rootSelector.style.setProperty('--header-color', '#4865a1');
+    $rootSelector.style.setProperty('--button-color', '#4865a1');
+    $rootSelector.style.setProperty('--background-color', '#edf0f5');
+  } else if (event.target.value === 'modern') {
+    $rootSelector.style.setProperty('--header-color', '#131921');
+    $rootSelector.style.setProperty('--button-color', '#337ad6');
+    $rootSelector.style.setProperty('--background-color', '#aabed6');
+  }
+}
 
 function buttonTextSearch(event) {
   var counter = $journalFeedList.children.length;

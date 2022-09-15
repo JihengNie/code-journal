@@ -5,12 +5,12 @@ img {
 }
 
 html {
-  background-color: #f0f0f0;
+  background-color: var(--background-color);
   font-family: sans-serif;
 }
 
 header {
-  background-color: #562b81;
+  background-color: var(--header-color);
   color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -39,7 +39,7 @@ header {
 
 .save-button {
   margin: 1.75rem 0;
-  background-color: #562b81;
+  background-color: var(--button-color);
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -51,7 +51,7 @@ header {
 
 .new-button {
   margin: 1.75rem 0;
-  background-color: #562b81;
+  background-color: var(--button-color);
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -68,7 +68,7 @@ header {
 }
 
 .save-button:hover {
-  background-color: rgb(128 52 205);
+  background-color: var(--button-color);
 }
 
 .space-between {
@@ -113,7 +113,7 @@ a:hover {
 .edit-button {
   display: inline-block;
   transform: rotate(90deg);
-  color: #562b81;
+  color: var(--button-color);
 }
 
 .edit-button:hover {
@@ -187,7 +187,7 @@ a:hover {
 
 .search-button {
   margin: 1.75rem 0.5rem;
-  background-color: #562b81;
+  background-color: var(--button-color);
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -203,8 +203,8 @@ a:hover {
   box-shadow: 0 0 1px 1px rgb(150 66 233 / 60%);
 }
 
-.date-drop-down {
-  background-color: #562b81;
+.drop-down-menu {
+  background-color: var(--button-color);
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -212,4 +212,13 @@ a:hover {
   border: 0;
   cursor: pointer;
   transition: background-color 0.15s ease;
+}
+
+:root {
+  --button-color: #562b81;
+  --background-color: #f0f0f0;
+  --header-color: #562b81;
+  --fire-color: red;
+  --original-button-color: #562b81;
+  --original-background-color: #f0f0f0;
 }
