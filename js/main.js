@@ -31,7 +31,6 @@ $journalFeedList.addEventListener('click', editEntries);
 $cancelDeleteButton.addEventListener('click', hidePopUp);
 $deleteEntryButton.addEventListener('click', showPopup);
 $comfirmDeleteButton.addEventListener('click', deleteEntries);
-// $searchBar.addEventListener('input', searchText);
 $searchButton.addEventListener('click', buttonTextSearch);
 
 // Test space
@@ -62,16 +61,6 @@ function buttonTextSearch(event) {
   }
   // $searchBar.value = '';
 }
-
-// function searchText(event) {
-//   for (var j = $journalFeedList.children.length - 1; j >= 0; j--) {
-//     if (data.entries[j].title.toLowerCase().includes(event.target.value.toLowerCase())) {
-//       $journalFeedList.children[$journalFeedList.children.length - 1 - j].className = 'list-item';
-//     } else {
-//       $journalFeedList.children[$journalFeedList.children.length - 1 - j].className = 'list-item hidden';
-//     }
-//   }
-// }
 
 function deleteEntries(event) {
   for (var i = 0; i < data.entries.length; i++) {
