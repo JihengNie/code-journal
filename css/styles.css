@@ -173,3 +173,32 @@ a:hover {
 .pop-up-buttons:hover {
   cursor: pointer;
 }
+
+.search-bar {
+  height: 2rem;
+  width: 25rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgb(189 189 189);
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+
+.search-button {
+  margin: 1.75rem 0.5rem;
+  background-color: #562b81;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 10%;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.search-bar:focus {
+  outline: none;
+  border: 1px solid rgb(150 66 233);
+  box-shadow: 0 0 1px 1px rgb(150 66 233 / 60%);
+}
